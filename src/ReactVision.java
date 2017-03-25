@@ -15,6 +15,7 @@ public class ReactVision {
 	float table_size = 760;
 	float scale_factor = 1;
 	PFont font;
+	ArrayList<TuioObject> tuioObjectList;
 
 	boolean verbose = false; // print console debug messages
 	boolean callback = true; // updates only after callbacks
@@ -71,7 +72,8 @@ public class ReactVision {
 			  float cur_size = cursor_size*scale_factor; 
 			   
 			  
-			  ArrayList<TuioObject> tuioObjectList = tuioClient.getTuioObjectList();
+			  tuioObjectList = tuioClient.getTuioObjectList();
+			  
 			  for (int i=0;i<tuioObjectList.size();i++) {
 			     TuioObject tobj = tuioObjectList.get(i);
 			     app.stroke(0);
@@ -85,20 +87,11 @@ public class ReactVision {
 			     app.text(""+tobj.getSymbolID(), tobj.getScreenX(app.width), tobj.getScreenY(app.height));
 			   }
 			   
-/*
-			  ArrayList<TuioBlob> tuioBlobList = tuioClient.getTuioBlobList();
-			  for (int i=0;i<tuioBlobList.size();i++) {
-			     TuioBlob tblb = tuioBlobList.get(i);
-			     app.stroke(0);
-			     app.fill(0);
-			     app.pushMatrix();
-			     app.translate(tblb.getScreenX(app.width),tblb.getScreenY(app.height));
-			     app.rotate(tblb.getAngle());
-			     app.ellipse(-1*tblb.getScreenWidth(app.width)/2,-1*tblb.getScreenHeight(app.height)/2, tblb.getScreenWidth(app.width), tblb.getScreenWidth(app.width));
-			     app.popMatrix();
-			     app.fill(255);
-			     app.text(""+tblb.getBlobID(), tblb.getScreenX(app.width), tblb.getScreenX(app.width));
-			   }
-			   */
 		}
+		
+		public ArrayList<TuioObject> getReactObjects(){
+			return tuioObjectList;
+		}
+		
+		
 }
