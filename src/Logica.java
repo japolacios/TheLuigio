@@ -2,6 +2,9 @@ import java.util.ArrayList;
 
 import TUIO.TuioObject;
 import TUIO.TuioProcessing;
+import ddf.minim.AudioPlayer;
+import ddf.minim.Minim;
+import ddf.minim.analysis.BeatDetect;
 import processing.core.PApplet;
 import processing.core.PConstants;
 
@@ -17,6 +20,10 @@ public class Logica {
 	private ReactVision react;
 	private ArrayList<Notas> notasArray;
 	private ArrayList<User> users;
+	
+	public Minim minim;
+	public AudioPlayer song;
+	public BeatDetect beat;
 
 	// Constructor
 	public Logica(PApplet _app) {
@@ -25,6 +32,10 @@ public class Logica {
 
 		// Se llama metodo para inicializar el resto de componentes
 		init();
+		
+		 minim = new Minim(app);
+		 song = minim.loadFile("assets/song.mp3");
+		
 	}
 
 	// Metodo Para Inicializar variables
@@ -40,8 +51,10 @@ public class Logica {
 		react.pintar();
 		checkBlobs();
 		atrapar();
-		pintarNotas();
+ 		pintarNotas();
 		pintarUsuarios();
+		song.play();
+		
 	}
 
 	public void pintarNotas() {
@@ -56,7 +69,7 @@ public class Logica {
 		}
 
 		for (int i = 0; i < notasArray.size(); i++) {
-			notasArray.get(i).pintar();
+			notasArray.get(i).pintar(song.mix);
 			notasArray.get(i).mover();
 		}
 	}
@@ -80,7 +93,6 @@ public class Logica {
 					notasArray.remove(n);
 				}
 			}
-
 		}
 	}
 
@@ -91,27 +103,28 @@ public class Logica {
 	}
 
 	public void checkBlobs() {
-		//System.out.println("Checking Blobs");
-		System.out.println(react.getReactObjects().size());
+		// System.out.println("Checking Blobs");
+//		System.out.println(react.getReactObjects().size());s
 		for (int i = 0; i < react.getReactObjects().size(); i++) {
 			TuioObject tempObj = react.getReactObjects().get(i);
 			System.out.println("Blob Fetched");
-			if(react.getReactObjects().size()>users.size()){
-				User tempUser = new User(app, tempObj.getScreenX(app.width), tempObj.getScreenY(app.height), tempObj.getSymbolID());
+			if (react.getReactObjects().size() > users.size()) {
+				User tempUser = new User(app, tempObj.getScreenX(app.width), tempObj.getScreenY(app.height),
+						tempObj.getSymbolID());
 				users.add(tempUser);
 				System.out.println("New User Added");
 			}
 			if (users != null && !users.isEmpty()) {
-				
+
 				for (int j = 0; j < users.size(); j++) {
 					User userTemp = users.get(j);
-					if(userTemp.getId() == tempObj.getSymbolID()){
+					if (userTemp.getId() == tempObj.getSymbolID()) {
 						System.out.println("Blob and User Identified");
 						userTemp.setPos(tempObj.getScreenX(app.width), tempObj.getScreenY(app.height));
 						userTemp.pintar();
 					}
 				}
-				
+
 			}
 		}
 
