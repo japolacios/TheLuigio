@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 import TUIO.TuioObject;
 import TUIO.TuioProcessing;
+import Ui.Ui;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import ddf.minim.analysis.BeatDetect;
@@ -20,7 +21,10 @@ public class Logica {
 	private ReactVision react;
 	private ArrayList<Notas> notasArray;
 	private ArrayList<User> users;
+	private Ui ui;
 	
+	
+	//Sound Atributes
 	public Minim minim;
 	public AudioPlayer song;
 	public BeatDetect beat;
@@ -43,11 +47,17 @@ public class Logica {
 		react = new ReactVision(app);
 		notasArray = new ArrayList<Notas>();
 		users = new ArrayList<User>();
+		ui = new Ui(app);
 		count = 0;
 		poblar = false;
+		
+		//Start Ui Thread
+		Thread nt = new Thread(ui);
+		nt.start();
 	}
 
 	public void pintar() {
+		
 		react.pintar();
 		checkBlobs();
 		atrapar();

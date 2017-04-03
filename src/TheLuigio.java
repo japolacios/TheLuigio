@@ -28,19 +28,16 @@ public class TheLuigio extends PApplet {
 		if(logica != null){
 			System.out.println("Logic Running");
 		}
-		
+			
 		  // GUI setup
 		  noCursor();
-		  
-		  noStroke();
-		  fill(0);	  
-		  
+		    	  
 	}
 	
 	@Override
 	public void draw() {
 		
-		background(0);
+		 background(0);
 		logica.pintar();	
 	
 	}

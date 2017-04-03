@@ -27,6 +27,8 @@ public class Notas {
 	}
 
 	public void pintar(AudioBuffer mix) {
+		
+		
 		app.noStroke();
 		beat.detect(mix);
 		pos.add(vel);
