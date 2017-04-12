@@ -5,13 +5,14 @@ import ddf.minim.analysis.BeatDetect;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Notas {
+public class Notas extends Thread{
 
 	private PApplet app;
 	private PVector pos;
 	private PVector vel;
 	private float t;
 	float y;
+	boolean iniciar=true;
 
 	private int forma;
 	private int color;
@@ -29,12 +30,27 @@ public class Notas {
 		forma =  (int) app.random(0,4);
 	}
 
+	@Override
+	public void run() {
+
+		while (iniciar) {
+
+		mover();
+		try {
+			sleep(33);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	}
+
 	public void pintar(AudioBuffer mix) {
 		
 		
 		app.noStroke();
 		beat.detect(mix);
-		pos.add(vel);
+
 		vel.limit(5);
 
 		float a = app.map(diam, 20, 80, 60, 255);
@@ -95,6 +111,16 @@ public class Notas {
 
 		pos.add(vel);
 
+
+	}
+
+	public boolean isIniciar() {
+		return iniciar;
+	}
+
+	public void setIniciar(boolean iniciar) {
+		this.iniciar = iniciar;
+		System.out.println("matado");
 	}
 
 	public PVector getPos() {

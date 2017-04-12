@@ -66,10 +66,10 @@ public class Logica {
 		atrapar();
  		pintarNotas();
 		pintarUsuarios();
+		desaparecerNotas();
 		
 		timeLine.pintar();
-		
-		
+
 	}
 
 	public void pintarNotas() {
@@ -85,7 +85,19 @@ public class Logica {
 
 		for (int i = 0; i < notasArray.size(); i++) {
 			notasArray.get(i).pintar(timeLine.getOut().mix);
-			notasArray.get(i).mover();
+
+		}
+
+	}
+
+	public void desaparecerNotas(){
+
+		for (int i = 0; i <notasArray.size() ; i++) {
+			Notas n= notasArray.get(i);
+			if (n.getPos().y>app.height-100) {
+				n.setIniciar(false);
+				notasArray.remove(n);
+			}
 		}
 	}
 
@@ -106,15 +118,19 @@ public class Logica {
 			for (int j = 0; j < users.size(); j++) {
 				if (app.dist(n.getPos().x, n.getPos().y, users.get(j).getPos().x, users.get(j).getPos().y) < 100 / 2) {
 					timeLine.agregar(n.getPos().x, n.getPos().y);
+					n.setIniciar(false);
 					notasArray.remove(n);
+
 				}
 			}
 		}
 	}
 
 	public void repoblar() {
-		for (int i = 0; i < 8; i++) {
-			notasArray.add(new Notas(app));
+		for (int i = 0; i < 5; i++) {
+			Notas n= new Notas(app);
+			n.start();
+			notasArray.add(n);
 		}
 	}
 
@@ -123,19 +139,19 @@ public class Logica {
 //		System.out.println(react.getReactObjects().size());s
 		for (int i = 0; i < react.getReactObjects().size(); i++) {
 			TuioObject tempObj = react.getReactObjects().get(i);
-			System.out.println("Blob Fetched");
+			//System.out.println("Blob Fetched");
 			if (react.getReactObjects().size() > users.size()) {
 				User tempUser = new User(app, tempObj.getScreenX(app.width), tempObj.getScreenY(app.height),
 						tempObj.getSymbolID());
 				users.add(tempUser);
-				System.out.println("New User Added");
+				//System.out.println("New User Added");
 			}
 			if (users != null && !users.isEmpty()) {
 
 				for (int j = 0; j < users.size(); j++) {
 					User userTemp = users.get(j);
 					if (userTemp.getId() == tempObj.getSymbolID()) {
-						System.out.println("Blob and User Identified");
+						//System.out.println("Blob and User Identified");
 						userTemp.setPos(tempObj.getScreenX(app.width), tempObj.getScreenY(app.height));
 						userTemp.pintar();
 					}
