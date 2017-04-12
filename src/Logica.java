@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 
+import Music.Notas;
+import Music.TimeLine;
 import TUIO.TuioObject;
 import TUIO.TuioProcessing;
-import Ui.Ui;
+import ddf.minim.AudioBuffer;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
 import ddf.minim.analysis.BeatDetect;
@@ -21,12 +23,13 @@ public class Logica {
 	private ReactVision react;
 	private ArrayList<Notas> notasArray;
 	private ArrayList<User> users;
-	private Ui ui;
+	
+	
+	private TimeLine timeLine;
 	
 	
 	//Sound Atributes
 	public Minim minim;
-	public AudioPlayer song;
 	public BeatDetect beat;
 
 	// Constructor
@@ -38,7 +41,7 @@ public class Logica {
 		init();
 		
 		 minim = new Minim(app);
-		 song = minim.loadFile("assets/song.mp3");
+		 timeLine= new TimeLine(_app, minim);
 		
 	}
 
@@ -47,13 +50,13 @@ public class Logica {
 		react = new ReactVision(app);
 		notasArray = new ArrayList<Notas>();
 		users = new ArrayList<User>();
-		ui = new Ui(app);
+		
 		count = 0;
 		poblar = false;
 		
 		//Start Ui Thread
-		Thread nt = new Thread(ui);
-		nt.start();
+		
+		
 	}
 
 	public void pintar() {
@@ -63,7 +66,9 @@ public class Logica {
 		atrapar();
  		pintarNotas();
 		pintarUsuarios();
-		song.play();
+		
+		timeLine.pintar();
+		
 		
 	}
 
@@ -79,7 +84,7 @@ public class Logica {
 		}
 
 		for (int i = 0; i < notasArray.size(); i++) {
-			notasArray.get(i).pintar(song.mix);
+			notasArray.get(i).pintar(timeLine.getOut().mix);
 			notasArray.get(i).mover();
 		}
 	}
@@ -100,6 +105,7 @@ public class Logica {
 			Notas n = notasArray.get(i);
 			for (int j = 0; j < users.size(); j++) {
 				if (app.dist(n.getPos().x, n.getPos().y, users.get(j).getPos().x, users.get(j).getPos().y) < 100 / 2) {
+					timeLine.agregar(n.getPos().x, n.getPos().y);
 					notasArray.remove(n);
 				}
 			}
