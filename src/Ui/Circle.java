@@ -71,16 +71,8 @@ public class Circle {
 		    x = app.cos(a)*rad *nVal;
 		    y = app.sin(a)*rad *nVal;
 
-		    //    x = map(a, 0,TWO_PI, 0,width);
-		    //    y = sin(a)*rad *nVal +height/2;
-
-//		    vertex(prevX, prevY);
 		    app.vertex(x, y);
 
-		    //    line(x,y,x,height);
-
-//		    prevX = x;
-//		    prevY = y;
 		    
 		    }
 		  app.endShape(app.CLOSE);

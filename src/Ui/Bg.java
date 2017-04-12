@@ -31,6 +31,8 @@ public class Bg {
 		beat.detect(mix);
 		app.imageMode(app.CENTER);
 		
+		
+		
 		if(beat.isOnset()){
 			noiser = app.random(150,220);
 		}
