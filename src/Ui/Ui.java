@@ -2,6 +2,7 @@ package Ui;
 
 import java.util.ArrayList;
 
+
 import processing.core.PApplet;
 
 public class Ui implements Runnable {
@@ -9,27 +10,22 @@ public class Ui implements Runnable {
 	// Atributes
 	private PApplet app;
 	private int stage;
-
+	private QuadVex quad;
 	// Relations
-	ArrayList<Hexagon> hexagons;
-	NoiseLines noiseLines;
-	Blocks blocks;
+
 	// Constructor
 	public Ui(PApplet _app) {
 		app = _app;
-
 		init();
 	}
 
 	public void init() {
 		stage = 0;
-		//hexagons = new ArrayList<Hexagon>();
-		noiseLines = new NoiseLines(app);
-		//blocks = new Blocks(app);
+		quad = new QuadVex(app);
 	}
 
 	public void paint() {
-		noiseLines.paint();
+			quad.paint();
 	}
 
 	// -------------------Gets &
@@ -46,8 +42,7 @@ public class Ui implements Runnable {
 	public void run() {
 		while(true){
 			try {
-				noiseLines.paint();
-				//blocks.paint();
+				
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -56,5 +51,7 @@ public class Ui implements Runnable {
 		
 	}
 
+	
+	
 	// End of UI Class
 }

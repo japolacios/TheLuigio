@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 import TUIO.TuioObject;
 import TUIO.TuioProcessing;
+import Ui.Bg;
+import Ui.Circle;
 import Ui.Ui;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
@@ -22,7 +24,8 @@ public class Logica {
 	private ArrayList<Notas> notasArray;
 	private ArrayList<User> users;
 	private Ui ui;
-	
+	private Circle circulo;
+	private Bg bg;
 	
 	//Sound Atributes
 	public Minim minim;
@@ -38,6 +41,7 @@ public class Logica {
 		init();
 		
 		 minim = new Minim(app);
+		 
 		 song = minim.loadFile("assets/song.mp3");
 		
 	}
@@ -48,6 +52,8 @@ public class Logica {
 		notasArray = new ArrayList<Notas>();
 		users = new ArrayList<User>();
 		ui = new Ui(app);
+		circulo = new Circle(app);
+		bg = new Bg(app);
 		count = 0;
 		poblar = false;
 		
@@ -57,7 +63,9 @@ public class Logica {
 	}
 
 	public void pintar() {
-		
+		ui.paint();
+		bg.paint(song.mix);
+		circulo.paint(song.mix);
 		react.pintar();
 		checkBlobs();
 		atrapar();
@@ -67,6 +75,8 @@ public class Logica {
 		
 	}
 
+	
+	
 	public void pintarNotas() {
 
 		if (count < app.millis()) {

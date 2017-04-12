@@ -18,7 +18,7 @@ public class TheLuigio extends PApplet {
 	public void settings(){
 		
 		System.out.println("Set Canvas Size");
-		size(displayWidth,displayHeight);
+		size(1280,720);
 	}
 	
 	@Override
@@ -36,8 +36,8 @@ public class TheLuigio extends PApplet {
 	
 	@Override
 	public void draw() {
-		
 		 background(0);
+		 
 		logica.pintar();	
 	
 	}
