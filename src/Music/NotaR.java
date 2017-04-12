@@ -62,8 +62,7 @@ public class NotaR extends Observable {
 	      return true;
 	    }
 	     return false; 
-	    
-	    
+
 	  }
 	  
 	  public int getEqs(){
