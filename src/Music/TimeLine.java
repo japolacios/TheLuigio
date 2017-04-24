@@ -27,7 +27,7 @@ private boolean poblar=false;
 
 int count;
 
-float bpm = 300;
+float bpm = 400;
 float minute = 60000;
  float interval = minute / bpm;
 int time;
@@ -82,11 +82,11 @@ public TimeLine(PApplet app, Minim minim) {
 	public void pintar(){
 
 //		  pintarNotas();
-		app.pushMatrix();
-		app.translate(0,0,2);
+		//app.pushMatrix();
+		//app.translate(540,0,2);
 		  pistaBase();
 		  pintarGraficos();
-		  app.popMatrix();
+		 // app.popMatrix();
 		  
 //		  user.pintar();
 //		  user.setPos(app.mouseX,app.mouseY);
@@ -164,14 +164,14 @@ public TimeLine(PApplet app, Minim minim) {
 
 	public void pintarGraficos(){//--------------------------------------------------------
 		//graphics
-		app.fill(40);
-		app.rect(0,0, 200, app.height);
+		app.fill(255,80);
+		app.rect(540,190, 305, app.height);
 
 		app.fill(255,0,0);
 		for(int i=0;i<interval;i++){
-			app.rectMode(app.CENTER);
+			//app.rectMode(app.CORNER);
 
-			app.rect(100,i*interval/4,200,8);
+			app.rect(540,190+(i*interval/4),305,8);
 
 		}
 

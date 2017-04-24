@@ -44,7 +44,7 @@ public class Logica {
 		
 		 minim = new Minim(app);
 		 timeLine= new TimeLine(_app, minim);
-		img= app.loadImage("data/planos_tertulia.jpg");
+		img= app.loadImage("data/planoTertulia.png");
 		
 	}
 
@@ -99,7 +99,7 @@ public class Logica {
 
 		for (int i = 0; i <notasArray.size() ; i++) {
 			Notas n= notasArray.get(i);
-			if (n.getPos().y>app.height-100) {
+			if (n.getPos().y>app.height-100 | n.getPos().x>500) {
 				n.setIniciar(false);
 				notasArray.remove(n);
 			}

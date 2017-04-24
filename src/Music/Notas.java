@@ -18,17 +18,17 @@ public class Notas extends Thread {
 	private int forma;
 	private int color;
 	BeatDetect beat;
-	int diam = 50;
+	int diam = 30;
 
 	public Notas(PApplet _app) {
 
 		app = _app;
 		t = 0;
-
-		pos = new PVector(app.random(50, 950), -50);
+		pos = new PVector(app.random(50, 540), -50);
 		vel = new PVector(app.random(-1, 1), app.random(0, 2));
 		beat = new BeatDetect();
 		forma = (int) app.random(0, 6);
+
 	}
 
 	@Override

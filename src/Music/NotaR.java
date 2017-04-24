@@ -23,8 +23,8 @@ public class NotaR extends Observable {
 	    /*destX=(eqs*(interval/4))-(interval/4)/2;
 	    destY=25;*/
 
-		  destX=25;
-		  destY=(eqs*(interval/4))-(interval/4)/2;
+		  destX=555;
+		  destY=190+(eqs*(interval/4))-(interval/4)/2;
 	    vel= 6;
 	    
 	  }

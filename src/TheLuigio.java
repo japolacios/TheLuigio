@@ -18,7 +18,7 @@ public class TheLuigio extends PApplet {
 	public void settings(){
 		
 		System.out.println("Set Canvas Size");
-		size(1280, 800, P3D);
+		size(845, 720, P3D);
 		PJOGL.profile=1;
 	}
 	
