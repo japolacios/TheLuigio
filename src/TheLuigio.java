@@ -18,6 +18,7 @@ public class TheLuigio extends PApplet {
 	public void settings(){
 		
 		System.out.println("Set Canvas Size");
+		//if you will run on eclipse delete P3D and comment next line
 		size(845, 720, P3D);
 		PJOGL.profile=1;
 	}
@@ -32,6 +33,8 @@ public class TheLuigio extends PApplet {
 
 		  // GUI setup
 		  noCursor();
+
+		//if you will run on eclipse comment line below
 		s = new SyphonServer(this, "Processing Syphon");
 		    	  
 	}
@@ -41,6 +44,7 @@ public class TheLuigio extends PApplet {
 		
 		 background(0);
 		logica.pintar();
+		//if you will run on eclipse comment line below
 		s.sendScreen();
 	
 	}
