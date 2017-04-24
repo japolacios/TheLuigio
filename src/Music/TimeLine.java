@@ -15,6 +15,8 @@ import ddf.minim.AudioSample;
 //import ddf.minim.Minim;
 import ddf.minim.ugens.*;
 
+import static javax.swing.SwingConstants.CENTER;
+
 public class TimeLine implements Observer {
 	
 
@@ -25,7 +27,7 @@ private boolean poblar=false;
 
 int count;
 
-float bpm = 188;
+float bpm = 300;
 float minute = 60000;
  float interval = minute / bpm;
 int time;
@@ -80,8 +82,11 @@ public TimeLine(PApplet app, Minim minim) {
 	public void pintar(){
 
 //		  pintarNotas();
+		app.pushMatrix();
+		app.translate(0,0,2);
 		  pistaBase();
 		  pintarGraficos();
+		  app.popMatrix();
 		  
 //		  user.pintar();
 //		  user.setPos(app.mouseX,app.mouseY);
@@ -124,8 +129,8 @@ public TimeLine(PApplet app, Minim minim) {
 		    
 		    for(int i=0; i<notas.size(); i++){
 		    NotaR n= notas.get(i);
-		    n.sonar(linea.getPosX()); 
-		    if(n.sonar(linea.getPosX())){
+		    n.sonar(linea.getPosY());
+		    if(n.sonar(linea.getPosY())){
 		      notas.remove(n);
 		    }
 		    
@@ -134,7 +139,7 @@ public TimeLine(PApplet app, Minim minim) {
 		  } 
 		}
 
-		public void pintarGraficos(){
+		/*public void pintarGraficos(){
 		  //graphics
 		  app.fill(40);
 		  app.rect(0,0, app.width, 200);
@@ -154,10 +159,36 @@ public TimeLine(PApplet app, Minim minim) {
 		    n.pintar();
 		    n.sonar(linea.getPosX()); 
 		  }
+		}*/
+
+
+	public void pintarGraficos(){//--------------------------------------------------------
+		//graphics
+		app.fill(40);
+		app.rect(0,0, 200, app.height);
+
+		app.fill(255,0,0);
+		for(int i=0;i<interval;i++){
+			app.rectMode(app.CENTER);
+
+			app.rect(100,i*interval/4,200,8);
+
 		}
-		
-		
-		@Override
+
+		linea.pintar();
+		linea.mover(linetime, interval, beats);
+
+		for(int i=0; i<notas.size(); i++){
+			NotaR n= notas.get(i);
+			n.pintar();
+			n.sonar(linea.getPosY());
+		}
+	}
+
+
+
+
+	@Override
 		public void update(Observable o, Object arg) {
 
 			if (arg instanceof String) {

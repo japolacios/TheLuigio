@@ -3,7 +3,11 @@ package Music;
 import processing.core.PApplet;
 
 public class Linea {
-	 float posX;
+
+	 float posY;
+
+
+
 	 PApplet app;
 	  
 	 public Linea(PApplet app){
@@ -15,7 +19,7 @@ public class Linea {
 	 app.fill(200);
 	  
 	  app.rectMode(app.CENTER);
-	  app.rect(posX, 100, 5, 200);
+	  app.rect(100, posY, 200, 5);
 	  app.rectMode(app.CORNER);
 	  
 	  }
@@ -23,14 +27,14 @@ public class Linea {
 	  
 	  public void mover(int m, float interval, int beats){
 		  
-		  app.text(beats, posX+15, 100);
+		//  app.text(beats, posX+15, 100);
 	      //posX= map(m,1,16,0,width);
-	      posX= m*(interval/4)-(interval/4)/2;
+	      posY= m*(interval/4)-(interval/4)/2;
 	      //app.text(linetime, 30, app.height - 25);
 	  }
-	  
-	  public float getPosX(){
-	    return posX;
-	  }
 
+
+	public float getPosY() {
+		return posY;
+	}
 }

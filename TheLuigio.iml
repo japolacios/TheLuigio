@@ -103,5 +103,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="gluegen-rt-natives-linux-amd64" level="project" />
+    <orderEntry type="library" name="library" level="project" />
   </component>
 </module>

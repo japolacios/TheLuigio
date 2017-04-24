@@ -20,8 +20,11 @@ public class NotaR extends Observable {
 	    pos= new PVector(posX, posY);
 	    tam=20;
 	    eqs=(int)app.random(1,16); 
-	    destX=(eqs*(interval/4))-(interval/4)/2;
-	    destY=25;
+	    /*destX=(eqs*(interval/4))-(interval/4)/2;
+	    destY=25;*/
+
+		  destX=25;
+		  destY=(eqs*(interval/4))-(interval/4)/2;
 	    vel= 6;
 	    
 	  }
@@ -53,9 +56,9 @@ public class NotaR extends Observable {
 	    
 	  }
 	  
-	  public boolean sonar(float x){
-	    
-	    if(PApplet.dist(pos.x, pos.y, x, pos.y)<12){
+	  public boolean sonar(float y){
+
+	    if(PApplet.dist(pos.x, pos.y, pos.x, y)<12){
 	    	setChanged();
 			notifyObservers("suene");
 			clearChanged();

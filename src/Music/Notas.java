@@ -12,6 +12,7 @@ public class Notas extends Thread {
 	private PVector vel;
 	private float t;
 	float y;
+
 	boolean iniciar = true;
 
 	private int forma;

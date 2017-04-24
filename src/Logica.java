@@ -10,6 +10,7 @@ import ddf.minim.Minim;
 import ddf.minim.analysis.BeatDetect;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
 
 public class Logica {
 	// Applet
@@ -23,6 +24,7 @@ public class Logica {
 	private ReactVision react;
 	private ArrayList<Notas> notasArray;
 	private ArrayList<User> users;
+	private PImage img;
 	
 	
 	private TimeLine timeLine;
@@ -42,6 +44,7 @@ public class Logica {
 		
 		 minim = new Minim(app);
 		 timeLine= new TimeLine(_app, minim);
+		img= app.loadImage("data/planos_tertulia.jpg");
 		
 	}
 
@@ -60,7 +63,9 @@ public class Logica {
 	}
 
 	public void pintar() {
-		
+
+
+		app.image(img, 0,0);
 		react.pintar();
 		checkBlobs();
 		atrapar();
