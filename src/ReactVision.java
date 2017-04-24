@@ -77,11 +77,11 @@ public class ReactVision {
 			  for (int i=0;i<tuioObjectList.size();i++) {
 			     TuioObject tobj = tuioObjectList.get(i);
 			     app.stroke(0);
-			     app.fill(0,0,255);
+			     //app.fill(0,0,255);
 			     app.pushMatrix();
 			     app.translate(tobj.getScreenX(app.width),tobj.getScreenY(app.height));
 			     app.rotate(tobj.getAngle());
-			     app.ellipse(-obj_size/2,-obj_size/2,150,150);
+			    // app.ellipse(-obj_size/2,-obj_size/2,150,150);
 			     app.popMatrix();
 			     app.fill(255,0,0);
 			     app.text(""+tobj.getSymbolID(), tobj.getScreenX(app.width), tobj.getScreenY(app.height));

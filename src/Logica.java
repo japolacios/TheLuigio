@@ -142,11 +142,15 @@ public class Logica {
 	public void checkBlobs() {
 		// System.out.println("Checking Blobs");
 //		System.out.println(react.getReactObjects().size());s
+
+
 		for (int i = 0; i < react.getReactObjects().size(); i++) {
 			TuioObject tempObj = react.getReactObjects().get(i);
 			//System.out.println("Blob Fetched");
+			//mapX= app.map(tempObj.getScreenX(app.width), )
+
 			if (react.getReactObjects().size() > users.size()) {
-				User tempUser = new User(app, tempObj.getScreenX(app.width), tempObj.getScreenY(app.height),
+				User tempUser = new User(app, tempObj.getScreenX(540), tempObj.getScreenY(app.height),
 						tempObj.getSymbolID());
 				users.add(tempUser);
 				//System.out.println("New User Added");
@@ -157,7 +161,8 @@ public class Logica {
 					User userTemp = users.get(j);
 					if (userTemp.getId() == tempObj.getSymbolID()) {
 						//System.out.println("Blob and User Identified");
-						userTemp.setPos(tempObj.getScreenX(app.width), tempObj.getScreenY(app.height));
+
+						userTemp.setPos(tempObj.getScreenX(540), tempObj.getScreenY(app.height));
 						userTemp.pintar();
 					}
 				}
