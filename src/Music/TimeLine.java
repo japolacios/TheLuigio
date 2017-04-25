@@ -171,7 +171,7 @@ public TimeLine(PApplet app, Minim minim) {
 		for(int i=0;i<interval;i++){
 			//app.rectMode(app.CORNER);
 
-			app.rect(540,190+(i*interval/4),305,8);
+			//app.rect(540,190+(i*interval/4),305,8);
 
 		}
 

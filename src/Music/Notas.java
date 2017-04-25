@@ -48,6 +48,7 @@ public class Notas extends Thread {
 
 	public void pintar(AudioBuffer mix) {
 
+		app.strokeWeight(5);
 		app.noStroke();
 		beat.detect(mix);
 
@@ -83,6 +84,7 @@ public class Notas extends Thread {
 			case 1:
 				int tam = 50;
 
+
 				app.stroke(18, 183, 255);
 				app.noFill();
 
@@ -99,34 +101,13 @@ public class Notas extends Thread {
 				break;
 
 			case 2:
-				app.pushMatrix();
-				app.translate(pos.x, pos.y);
-				app.noStroke();
-				app.smooth();
-				float radius = 38 + b;
-				for (int deg = 0; deg < 360; deg += 10) {
-					float angle = app.radians(deg);
-					float x = 50 + (app.sin(angle) * radius);
-					float y = 50 + (app.cos(angle) * radius);
-					app.ellipse(x, y, 2, 2);
-				}
-				app.popMatrix();
+				app.fill(255,0,0);
+				app.ellipse(pos.x,pos.y,50,50);
 				break;
 
 			case 3:
-				float mov = 50;
-
-				app.stroke(234, 0, 95);
-				app.pushMatrix();
-				app.translate(pos.x, pos.y);
-				app.line(pos.x, pos.y - b, pos.x, pos.y + mov - b);
-				app.line(pos.x + 15, pos.y + (mov / 3) + b, pos.x + 15, pos.y + (mov * 2) + b);
-				app.line(pos.x + 30, pos.y + ((mov / 3) * 2) - b, pos.x + 30, pos.y + (mov * 2.5f) - b);
-
-				app.line(pos.x + 40, pos.y + b, pos.x + 40, pos.y + mov + b);
-				app.line(pos.x + 50, pos.y + (mov / 3) - b, pos.x + 50, pos.y + (mov * 2) - b);
-				app.line(pos.x + 65, pos.y + ((mov / 3) * 2) + b, pos.x + 65, pos.y + (mov * 2.5f) + b);
-				app.popMatrix();
+				app.fill(255,255,0);
+				app.ellipse(pos.x,pos.y,50,50);
 				break;
 
 			case 4:
