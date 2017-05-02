@@ -26,7 +26,6 @@ private boolean poblar=false;
 //time
 
 int count;
-
 float bpm = 400;
 float minute = 60000;
  float interval = minute / bpm;
@@ -47,7 +46,10 @@ Minim minim;
 AudioOutput out;
 Sampler s,h,k;
 //sonidos nuevos xdxdx
-	Sampler f,g,l;
+	Sampler unoocho,unonueve, unodiez;
+	Sampler dosuno,dosdos,dostres, doscuatro, doscinco;
+	Sampler tresuno,tresdos,trestres, trescuatro, trescinco, tresseis;
+
 AudioInput au;
 PApplet app;
 
@@ -68,16 +70,58 @@ public TimeLine(PApplet app, Minim minim) {
 	  k=new Sampler("assets/redo.wav", 4, minim);
 	  h=new Sampler("assets/bombo.wav", 4, minim);
 
-	  f=new Sampler("assets/onenueve.wav", 4, minim);
-	  g=new Sampler("assets/oneocho.wav", 4, minim);
+	s.patch(out);
+	k.patch(out);
+	h.patch(out);
 
 
-	  s.patch(out);
-	  k.patch(out);
-	  h.patch(out);
 
-	  f.patch(out);
-	  g.patch(out);
+
+	//uno---------------------------------------------
+
+	  unonueve=new Sampler("assets/onenueve.wav", 4, minim);
+	  unoocho=new Sampler("assets/oneocho.wav", 4, minim);
+	  unodiez=new Sampler("assets/unodiez.wav", 4, minim);
+
+	unonueve.patch(out);
+	unoocho.patch(out);
+	unodiez.patch(out);
+
+	//dos---------------------------------------------
+
+	dosuno=new Sampler("assets/dosuno.wav", 4, minim);
+	dosdos=new Sampler("assets/dosdos.wav", 4, minim);
+	dostres=new Sampler("assets/dostres.wav", 4, minim);
+	doscuatro=new Sampler("assets/doscuatro.wav", 4, minim);
+	doscinco=new Sampler("assets/doscinco.wav", 4, minim);
+
+	dosuno.patch(out);
+	dosdos.patch(out);
+	dostres.patch(out);
+	doscuatro.patch(out);
+	doscinco.patch(out);
+
+	//tres---------------------------------------------
+
+
+	  tresuno=new Sampler("assets/tresone.wav", 4, minim);
+	tresdos=new Sampler("assets/tresdos.wav", 4, minim);
+	trestres=new Sampler("assets/trestres.wav", 4, minim);
+	trescuatro=new Sampler("assets/trescuatro.wav", 4, minim);
+	trescinco=new Sampler("assets/trescinco.wav", 4, minim);
+	tresseis=new Sampler("assets/tresseis.wav", 4, minim);
+
+	tresuno.patch(out);
+	tresdos.patch(out);
+	trestres.patch(out);
+	trescuatro.patch(out);
+	trescinco.patch(out);
+	tresseis.patch(out);
+
+
+
+
+
 	   
 	  
 	  
@@ -203,9 +247,95 @@ public TimeLine(PApplet app, Minim minim) {
 		public void update(Observable o, Object arg) {
 
 			if (arg instanceof String) {
+
 				String m= (String)arg;
-				if (m.contains("suene")) {
-					g.trigger();
+				String[] palabras=m.split(":");
+				int ale= Integer.parseInt(palabras[1]);
+
+				if (m.contains("suene uno")) {
+
+					switch (ale){
+						case 0:
+							unoocho.trigger();
+							break;
+						case 1:
+							unoocho.trigger();
+							break;
+						case 2:
+							unodiez.trigger();
+							break;
+						case 3:
+							unonueve.trigger();
+							break;
+
+						case 4:
+							unodiez.trigger();
+							break;
+
+						case 5:
+							unoocho.trigger();
+							break;
+
+
+					}
+
+				}
+				if (m.contains("suene dos")) {
+					switch (ale){
+						case 0:
+							dosuno.trigger();
+							break;
+						case 1:
+							dosuno.trigger();
+							break;
+						case 2:
+							dosdos.trigger();
+							break;
+						case 3:
+							dostres.trigger();
+							break;
+
+						case 4:
+							doscuatro.trigger();
+							break;
+
+						case 5:
+							doscinco.trigger();
+							break;
+
+
+					}
+
+				}
+				if (m.contains("suene tres")) {
+
+					switch (ale){
+
+						case 0:
+							tresuno.trigger();
+							break;
+
+						case 1:
+							tresdos.trigger();
+							break;
+						case 2:
+							trestres.trigger();
+							break;
+						case 3:
+							trescuatro.trigger();
+							break;
+
+						case 4:
+							trescinco.trigger();
+							break;
+
+						case 5:
+							tresseis.trigger();
+							break;
+
+
+					}
+
 				}
 
 			}

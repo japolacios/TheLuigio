@@ -155,9 +155,27 @@ public class NotaR extends Observable {
 
 	    if(PApplet.dist(pos.x, pos.y, pos.x, y)<6){
 			if(pos.x>540) {
-				setChanged();
-				notifyObservers("suene");
-				clearChanged();
+				if (idUser==1) {
+					setChanged();
+					notifyObservers("suene uno"+":"+forma);
+					clearChanged();
+				}
+
+				if (idUser==2) {
+					setChanged();
+					notifyObservers("suene dos"+":"+forma);
+					clearChanged();
+
+				}
+
+				if (idUser==3) {
+					setChanged();
+					notifyObservers("suene tres"+":"+forma);
+					clearChanged();
+
+				}
+
+
 				return true;
 			}
 	    }

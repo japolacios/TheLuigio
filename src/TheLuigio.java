@@ -49,6 +49,7 @@ public class TheLuigio extends PApplet {
 		logica.pintar();
 		//if you will run on eclipse comment line below
 		s.sendScreen();
+
 	
 	}
 	
