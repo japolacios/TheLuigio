@@ -34,6 +34,8 @@ int time;
 int linetime;
 int beats = 0;
 
+boolean sonar=false;
+
 //objects
 Linea linea;
 private ArrayList<NotaR> notas;
@@ -44,6 +46,8 @@ private ArrayList<NotaR> notas;
 Minim minim;
 AudioOutput out;
 Sampler s,h,k;
+//sonidos nuevos xdxdx
+	Sampler f,g,l;
 AudioInput au;
 PApplet app;
 
@@ -60,13 +64,20 @@ public TimeLine(PApplet app, Minim minim) {
 	  out  = minim.getLineOut();
 	 
 	  //assets pista base	  
-	  s= new Sampler("assets/CHH.wav", 4, minim);
-	  k=new Sampler("assets/SD.wav", 4, minim);
-	  h=new Sampler("assets/BD.wav", 4, minim);
-	  
+	  s= new Sampler("assets/hithat.wav", 4, minim);
+	  k=new Sampler("assets/redo.wav", 4, minim);
+	  h=new Sampler("assets/bombo.wav", 4, minim);
+
+	  f=new Sampler("assets/onenueve.wav", 4, minim);
+	  g=new Sampler("assets/oneocho.wav", 4, minim);
+
+
 	  s.patch(out);
 	  k.patch(out);
 	  h.patch(out);
+
+	  f.patch(out);
+	  g.patch(out);
 	   
 	  
 	  
@@ -194,54 +205,22 @@ public TimeLine(PApplet app, Minim minim) {
 			if (arg instanceof String) {
 				String m= (String)arg;
 				if (m.contains("suene")) {
-					h.trigger();
+					g.trigger();
 				}
+
 			}
+		if(sonar=true){
+
+
+		}
 			
 		}
 
-
-		/* 
-
-		  public void pintarNotas() {
-
-		    if (count < app.millis()) {
-		      poblar = true;
-		      count = count + 4000;
-		    }
-		    if (poblar) {
-		      repoblar();
-		      poblar = false;
-		    }
-
-		    for (int i = 0; i < notasArray.size(); i++) {
-		      notasArray.get(i).pintar();
-		      notasArray.get(i).mover();
-		    }
-		  }
-		 
-		    public void repoblar() {
-		    for (int i = 0; i < 8; i++) {
-		      notasArray.add(new Notas( (int) app.random(0,4)));
-		    }
-		  }
-
-		public void atrapar(){
-		  
-		  for(int i=0; i<notasArray.size();i++){
-		    Notas n= notasArray.get(i);
-		    if(dist(n.getPos().x, n.getPos().y,user.getPos().x, user.getPos().y)<25){
-		      
-		      notas.add(new NotaR(n.getPos().x, n.getPos().y, interval));
-		      notasArray.remove(n);
-		      
-		    }
-		  }
-		  
-		}*/
 		
-		public void agregar(float posX, float posY){
-			NotaR nr= new NotaR(posX, posY,app, interval);
+		public void agregar(float posX, float posY, int forma, int id){
+
+
+			NotaR nr= new NotaR(posX, posY,app, interval, forma, id);
 			nr.addObserver(this);
 			notas.add(nr);
 		      

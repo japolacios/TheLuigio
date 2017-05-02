@@ -175,4 +175,11 @@ public class Notas extends Thread {
 		return pos;
 	}
 
+	public int getForma() {
+		return forma;
+	}
+
+	public void setForma(int forma) {
+		this.forma = forma;
+	}
 }

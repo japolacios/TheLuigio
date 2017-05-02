@@ -4,6 +4,9 @@ import Music.Notas;
 import Music.TimeLine;
 import TUIO.TuioObject;
 import TUIO.TuioProcessing;
+import Ui.Bg;
+import Ui.Circle;
+import Ui.MainG;
 import ddf.minim.AudioBuffer;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
@@ -25,6 +28,9 @@ public class Logica {
 	private ArrayList<Notas> notasArray;
 	private ArrayList<User> users;
 	private PImage img;
+	private MainG ui;
+	//private Circle circulo;
+	private Bg bg;
 	
 	
 	private TimeLine timeLine;
@@ -56,16 +62,30 @@ public class Logica {
 		
 		count = 0;
 		poblar = false;
-		
+
 		//Start Ui Thread
+		ui = new MainG(app);
+		//circulo = new Circle(app);
+		bg = new Bg(app);
+
+		//Start Ui Thread
+		Thread nt = new Thread(ui);
+		nt.start();
 		
 		
 	}
 
 	public void pintar() {
 
-
+		app.imageMode(PConstants.CORNER);
 		app.image(img, 0,0);
+
+		app.pushMatrix();
+		ui.paint();
+		bg.paint(timeLine.getOut().mix);
+	//	circulo.paint(timeLine.getOut().mix);
+		app.popMatrix();
+
 		react.pintar();
 		checkBlobs();
 		atrapar();
@@ -120,9 +140,12 @@ public class Logica {
 	public void atrapar() {
 		for (int i = 0; i < notasArray.size(); i++) {
 			Notas n = notasArray.get(i);
+
 			for (int j = 0; j < users.size(); j++) {
+
 				if (app.dist(n.getPos().x, n.getPos().y, users.get(j).getPos().x, users.get(j).getPos().y) < 100 / 2) {
-					timeLine.agregar(n.getPos().x, n.getPos().y);
+
+					timeLine.agregar(n.getPos().x, n.getPos().y, n.getForma(), users.get(j).getId());
 					n.setIniciar(false);
 					notasArray.remove(n);
 
@@ -149,6 +172,7 @@ public class Logica {
 			//System.out.println("Blob Fetched");
 			//mapX= app.map(tempObj.getScreenX(app.width), )
 
+
 			if (react.getReactObjects().size() > users.size()) {
 				User tempUser = new User(app, tempObj.getScreenX(540), tempObj.getScreenY(app.height),
 						tempObj.getSymbolID());
@@ -161,15 +185,12 @@ public class Logica {
 					User userTemp = users.get(j);
 					if (userTemp.getId() == tempObj.getSymbolID()) {
 						//System.out.println("Blob and User Identified");
-
 						userTemp.setPos(tempObj.getScreenX(540), tempObj.getScreenY(app.height));
 						userTemp.pintar();
 					}
 				}
-
 			}
 		}
-
 	}
 
 }

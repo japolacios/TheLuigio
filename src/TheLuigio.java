@@ -36,13 +36,16 @@ public class TheLuigio extends PApplet {
 
 		//if you will run on eclipse comment line below
 		s = new SyphonServer(this, "Processing Syphon");
+
 		    	  
 	}
 	
 	@Override
 	public void draw() {
-		
-		 background(0);
+
+		background(0);
+		//fill(0, 20);
+		//rect(0, 0, width, height);
 		logica.pintar();
 		//if you will run on eclipse comment line below
 		s.sendScreen();
