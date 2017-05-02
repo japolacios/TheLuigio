@@ -20,7 +20,7 @@ public class User {
 		pos = new PVector(x, y);
 		app.noStroke();
 		app.fill(0, 255, 0);
-		app.ellipse(pos.x, pos.y, 50, 50);
+		app.rect(pos.x, pos.y, 50, 50);
 	}
 
 	public PVector getPos() {

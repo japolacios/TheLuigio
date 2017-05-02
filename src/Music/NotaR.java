@@ -6,49 +6,49 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 public class NotaR extends Observable {
-	
-	  PVector pos;
-	  PApplet app;
 
-	  float destX, destY;
-	  int diam;
-	  int eqs;
-	  int vel;
-	  int idUser;
+	PVector pos;
+	PApplet app;
+
+	float destX, destY;
+	int diam;
+	int eqs;
+	int vel;
+	int idUser;
 
 	private int forma;
 
-	  NotaR(float posX, float posY, PApplet app, float interval, int forma, int idUser){
-		  this.app=app;
-		  this.forma=forma;
-		  this.idUser=idUser;
-	    
-	    	pos= new PVector(posX, posY);
-	    	diam=10;
-	    	eqs=(int)app.random(1,16);
+	NotaR(float posX, float posY, PApplet app, float interval, int forma, int idUser){
+		this.app=app;
+		this.forma=forma;
+		this.idUser=idUser;
 
-	    	if (idUser==1){
-				destX=585;
-			}
+		pos= new PVector(posX, posY);
+		diam=10;
+		eqs=(int)app.random(1,16);
 
-		  if (idUser==2){
-			  destX=685;
-		  }
-		  if (idUser==3){
-			  destX=785;
-		  }
+		if (idUser==1){
+			destX=585;
+		}
+
+		if (idUser==2){
+			destX=685;
+		}
+		if (idUser==3){
+			destX=785;
+		}
 
 
-		  destY=190+(eqs*(interval/4))-(interval/4)/2;
-	    vel= 6;
-	  }
-	  
-	  NotaR(){
-	    
-	    pos= new PVector(app.random(app.width), app.random(app.height));
-	    diam=10;
-	    
-	  }
+		destY=190+(eqs*(interval/4))-(interval/4)/2;
+		vel= 6;
+	}
+
+	NotaR(){
+
+		pos= new PVector(app.random(app.width), app.random(app.height));
+		diam=10;
+
+	}
 
 	public void pintar() {
 
@@ -137,38 +137,56 @@ public class NotaR extends Observable {
 		}
 		animar();
 	}
-	  
-	  public void animar(){
 
-	    if(pos.x>destX)
-	  {pos.x-=vel;}
-	    if(pos.x<destX)
-	    {pos.x+=vel;}
-	    if(pos.y>destY)
-	    {pos.y-=vel;}
-	    if(pos.y<destY)
-	    {pos.y+=vel;}
+	public void animar(){
 
-	  }
-	  
-	  public boolean sonar(float y){
+		if(pos.x>destX)
+		{pos.x-=vel;}
+		if(pos.x<destX)
+		{pos.x+=vel;}
+		if(pos.y>destY)
+		{pos.y-=vel;}
+		if(pos.y<destY)
+		{pos.y+=vel;}
 
-	    if(PApplet.dist(pos.x, pos.y, pos.x, y)<6){
+	}
+
+	public boolean sonar(float y){
+
+		if(PApplet.dist(pos.x, pos.y, pos.x, y)<6){
 			if(pos.x>540) {
-				setChanged();
-				notifyObservers("suene");
-				clearChanged();
+				if (idUser==1) {
+					setChanged();
+					notifyObservers("suene uno"+":"+forma);
+					clearChanged();
+				}
+
+				if (idUser==2) {
+					setChanged();
+					notifyObservers("suene dos"+":"+forma);
+					clearChanged();
+
+				}
+
+				if (idUser==3) {
+					setChanged();
+					notifyObservers("suene tres"+":"+forma);
+					clearChanged();
+
+				}
+
+
 				return true;
 			}
-	    }
-	     return false; 
+		}
+		return false;
 
-	  }
+	}
 
-	  
-	  public int getEqs(){
-	   return eqs;
-	  }
+
+	public int getEqs(){
+		return eqs;
+	}
 
 	public int getForma() {
 		return forma;

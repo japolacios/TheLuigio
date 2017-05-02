@@ -31,11 +31,11 @@ public class Logica {
 	private MainG ui;
 	//private Circle circulo;
 	private Bg bg;
-	
-	
+
+
 	private TimeLine timeLine;
-	
-	
+
+
 	//Sound Atributes
 	public Minim minim;
 	public BeatDetect beat;
@@ -47,11 +47,11 @@ public class Logica {
 
 		// Se llama metodo para inicializar el resto de componentes
 		init();
-		
-		 minim = new Minim(app);
-		 timeLine= new TimeLine(_app, minim);
+
+		minim = new Minim(app);
+		timeLine= new TimeLine(_app, minim);
 		img= app.loadImage("data/planoTertulia.png");
-		
+
 	}
 
 	// Metodo Para Inicializar variables
@@ -59,7 +59,7 @@ public class Logica {
 		react = new ReactVision(app);
 		notasArray = new ArrayList<Notas>();
 		users = new ArrayList<User>();
-		
+
 		count = 0;
 		poblar = false;
 
@@ -71,8 +71,8 @@ public class Logica {
 		//Start Ui Thread
 		Thread nt = new Thread(ui);
 		nt.start();
-		
-		
+
+
 	}
 
 	public void pintar() {
@@ -83,16 +83,16 @@ public class Logica {
 		app.pushMatrix();
 		ui.paint();
 		bg.paint(timeLine.getOut().mix);
-	//	circulo.paint(timeLine.getOut().mix);
+		//	circulo.paint(timeLine.getOut().mix);
 		app.popMatrix();
 
 		react.pintar();
 		checkBlobs();
 		atrapar();
- 		pintarNotas();
+		pintarNotas();
 		pintarUsuarios();
 		desaparecerNotas();
-		
+
 		timeLine.pintar();
 
 	}
