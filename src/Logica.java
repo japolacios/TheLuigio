@@ -7,6 +7,7 @@ import TUIO.TuioProcessing;
 import Ui.Bg;
 import Ui.Circle;
 import Ui.MainG;
+import Ui.Start;
 import ddf.minim.AudioBuffer;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
@@ -29,12 +30,12 @@ public class Logica {
 	private ArrayList<User> users;
 	private PImage img;
 	private MainG ui;
+
 	//private Circle circulo;
 	private Bg bg;
-
-
 	private TimeLine timeLine;
-
+	private Start inicio;
+	private int pantallas=0;
 
 	//Sound Atributes
 	public Minim minim;
@@ -51,6 +52,7 @@ public class Logica {
 		minim = new Minim(app);
 		timeLine= new TimeLine(_app, minim);
 		img= app.loadImage("data/planoTertulia.png");
+		inicio= new Start(app);
 
 	}
 
@@ -72,13 +74,28 @@ public class Logica {
 		Thread nt = new Thread(ui);
 		nt.start();
 
-
 	}
 
 	public void pintar() {
 
 		app.imageMode(PConstants.CORNER);
 		app.image(img, 0,0);
+
+switch (0){
+
+
+	case 0:
+
+		inicio.pintar();
+
+		break;
+	case 1:
+
+
+		app.fill(255);
+		app.rect(162,270, 115, 239);
+		app.rect(4,10, 10, 708);
+		app.rect(167,550, 369, 10);
 
 		app.pushMatrix();
 		ui.paint();
@@ -92,8 +109,12 @@ public class Logica {
 		pintarNotas();
 		pintarUsuarios();
 		desaparecerNotas();
-
 		timeLine.pintar();
+
+		break;
+
+}
+
 
 	}
 
@@ -119,7 +140,7 @@ public class Logica {
 
 		for (int i = 0; i <notasArray.size() ; i++) {
 			Notas n= notasArray.get(i);
-			if (n.getPos().y>app.height-100 | n.getPos().x>500) {
+			if (n.getPos().y>app.height-280 | n.getPos().x>500) {
 				n.setIniciar(false);
 				notasArray.remove(n);
 			}

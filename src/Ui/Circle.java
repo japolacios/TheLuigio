@@ -17,8 +17,6 @@ public class Circle {
     float rad = 150;
     float x = 1;
     float y = 1;
-    //float prevX;
-    //float prevY;
 
     float t = 0; // time passed
     float tChange = .02f; // how quick time flies

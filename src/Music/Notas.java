@@ -19,6 +19,12 @@ public class Notas extends Thread {
 	private int color;
 	BeatDetect beat;
 	int diam = 30;
+	float progress=0;
+	//--------------------------AMEBA ESA-----------------
+
+
+	//--------------------------AMEBA ESA-----------------
+
 
 	public Notas(PApplet _app) {
 
@@ -48,6 +54,8 @@ public class Notas extends Thread {
 
 	public void pintar(AudioBuffer mix) {
 
+
+
 		app.strokeWeight(5);
 		app.noStroke();
 		beat.detect(mix);
@@ -67,11 +75,11 @@ public class Notas extends Thread {
 			case 0:
 				app.fill(234, 0, 95);
 				app.rectMode(app.CENTER);
-				app.rect(pos.x, pos.y, 30, 30);
+				app.rect(pos.x, pos.y, 30+b, 30+b);
 
 				app.pushMatrix();
 				app.translate(pos.x, pos.y);
-				app.rotate(a - 60);
+				app.rotate(progress - 60);
 				app.noFill();
 				app.stroke(18 + a, 183 - a, 255);
 				app.rect(0, 0, 60, 60);
@@ -81,17 +89,16 @@ public class Notas extends Thread {
 
 				break;
 
-			case 1:
+			case 1://ciculito con cuadrado adentro
 				int tam = 50;
 
-
-				app.stroke(18, 183, 255);
+				app.stroke(234, 160, 255);
 				app.noFill();
 
 				app.pushMatrix();
 				app.translate(pos.x, pos.y);
 				app.rectMode(app.CENTER);
-				app.rotate(a - 60);
+				app.rotate(progress - 60);
 				app.rect(0, 0, tam, tam);
 				app.rectMode(app.CORNER);
 				app.popMatrix();
@@ -100,41 +107,61 @@ public class Notas extends Thread {
 
 				break;
 
-			case 2:
-				app.fill(255,0,0);
-				app.ellipse(pos.x,pos.y,50,50);
-				break;
-
-			case 3:
-				app.fill(255,255,0);
-				app.ellipse(pos.x,pos.y,50,50);
-				break;
-
-			case 4:
+			case 2://cuadro con linea
 				app.noFill();
-				app.stroke(18, 183, 255);
-
-				app.ellipse(pos.x, pos.y, 80, 80);
+				app.stroke(250, 1, 255);
 
 				app.pushMatrix();
 				app.translate(pos.x, pos.y);
+
+				app.line(10+b, 10+b, 40-b, 40-b);
+
+				app.rect(0, 0, 50, 50);
+				app.popMatrix();
+				break;
+
+			case 3: // circulo niu
 				app.noFill();
-				app.stroke(234, 0, 95);
-				app.ellipseMode(app.CORNER);
-				app.rotate(diam);
-				app.ellipse(15, 15, 15, 15);
-				app.ellipseMode(app.CENTER);
+
+				app.pushMatrix();
+				app.translate(pos.x, pos.y);
+				app.stroke(25, 255, 0);
+				app.arc(50, 55+(b-9), 60, 60, app.HALF_PI, app.PI+a);
+				app.stroke(75, 255, 56);
+				app.arc(50, 55, 70, 70, app.PI, app.PI+app.QUARTER_PI);
+				app.stroke(160, 255, 150);
+				app.arc(50, 55, 80, 80, app.PI+app.QUARTER_PI, app.TWO_PI);
 				app.popMatrix();
 
 				break;
 
-			case 5:
+			case 4:
 
-				app.noFill();
-				app.stroke(18, 183, 255);
 
 				app.pushMatrix();
-				app.translate(pos.x-b, pos.y);
+				app.translate(pos.x, pos.y);
+				app.noFill();
+				app.stroke(255, 176, 91);
+				app.ellipseMode(app.CORNER);
+				app.rotate(progress-60);
+				app.ellipse(15, 15, 15, 15);
+				app.ellipseMode(app.CENTER);
+				app.popMatrix();
+
+				app.noFill();
+				app.stroke(255, 67, 0);
+
+				app.ellipse(pos.x, pos.y, 80, 80);
+
+				break;
+
+			case 5://ultimo rombo :v
+
+				app.noFill();
+				app.stroke(0, 174, 255);
+
+				app.pushMatrix();
+				app.translate(pos.x - (b-20), pos.y);
 				app.quad(75, 50, 50, 15, 24, 50, 50, 85);
 				app.popMatrix();
 
@@ -146,7 +173,7 @@ public class Notas extends Thread {
 				app.popMatrix();
 
 				app.pushMatrix();
-				app.translate(pos.x+b, pos.y);
+				app.translate(pos.x + (b-20), pos.y);
 				app.quad(75 + 20, 50, 50 + 20, 15, 24 + 20, 50, 50 + 20, 85);
 				app.popMatrix();
 
@@ -159,6 +186,7 @@ public class Notas extends Thread {
 	public void mover() {
 
 		pos.add(vel);
+		progress+=0.03;
 
 	}
 

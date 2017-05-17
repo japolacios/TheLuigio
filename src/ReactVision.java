@@ -84,7 +84,7 @@ public class ReactVision {
 			    // app.ellipse(-obj_size/2,-obj_size/2,150,150);
 			     app.popMatrix();
 			     app.fill(255,0,0);
-			     app.text(""+tobj.getSymbolID(), tobj.getScreenX(app.width), tobj.getScreenY(app.height));
+			  //   app.text(""+tobj.getSymbolID(), tobj.getScreenX(app.width), tobj.getScreenY(app.height));
 			   }
 			   
 		}

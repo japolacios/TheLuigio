@@ -20,7 +20,6 @@ public class Bg {
         loadAssets();
     }
 
-
     private void loadAssets(){
         img1 = app.loadImage("./assets/1.jpg");
         img2 = app.loadImage("./assets/2.jpg");

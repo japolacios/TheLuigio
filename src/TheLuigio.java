@@ -32,7 +32,7 @@ public class TheLuigio extends PApplet {
 		}
 
 		  // GUI setup
-		  noCursor();
+		//  noCursor();
 
 		//if you will run on eclipse comment line below
 		s = new SyphonServer(this, "Processing Syphon");
@@ -44,6 +44,8 @@ public class TheLuigio extends PApplet {
 	public void draw() {
 
 		background(0);
+
+
 		//fill(0, 20);
 		//rect(0, 0, width, height);
 		logica.pintar();
@@ -55,6 +57,11 @@ public class TheLuigio extends PApplet {
 	
 	public static void main(String[] args) {
 		PApplet.main("TheLuigio");
+	}
+
+	public void mousePressed(){
+
+		System.out.println(mouseX+":"+mouseY);
 	}
 
 }

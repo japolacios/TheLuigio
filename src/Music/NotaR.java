@@ -27,14 +27,14 @@ public class NotaR extends Observable {
 		diam=10;
 		eqs=(int)app.random(1,16);
 
-		if (idUser==1){
+		if (idUser==0){
 			destX=585;
 		}
 
-		if (idUser==2){
+		if (idUser==1){
 			destX=685;
 		}
-		if (idUser==3){
+		if (idUser==2){
 			destX=785;
 		}
 
@@ -96,13 +96,31 @@ public class NotaR extends Observable {
 				break;
 
 			case 2:
-				app.fill(255,0,0);
-				app.ellipse(pos.x,pos.y,30,30);
+				app.noFill();
+				app.stroke(255, 60, 60);
+
+				app.pushMatrix();
+				app.translate(pos.x, pos.y);
+
+
+
+				app.rect(0, 0, 25, 25);
+				app.popMatrix();
 				break;
 
 			case 3:
-				app.fill(255,255,0);
-				app.ellipse(pos.x,pos.y,30,30);
+				app.noFill();
+
+				app.pushMatrix();
+				app.translate(pos.x, pos.y);
+				app.stroke(25, 255, 0);
+				app.arc(50, 55, 30, 30, app.HALF_PI, app.PI);
+				app.stroke(75, 255, 56);
+				app.arc(50, 55, 35, 35, app.PI, app.PI+app.QUARTER_PI);
+				app.stroke(160, 255, 150);
+				app.arc(50, 55, 40, 40, app.PI+app.QUARTER_PI, app.TWO_PI);
+				app.popMatrix();
+
 				break;
 
 			case 4:
@@ -172,9 +190,7 @@ public class NotaR extends Observable {
 					setChanged();
 					notifyObservers("suene tres"+":"+forma);
 					clearChanged();
-
 				}
-
 
 				return true;
 			}
