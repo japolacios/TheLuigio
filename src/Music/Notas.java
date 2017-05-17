@@ -72,17 +72,19 @@ public class Notas extends Thread {
 			diam = 20;
 
 		switch (forma) {
-			case 0:
+			case 0:// Cuadro con cuadro dentro
+				int tamC = 20;
+
 				app.fill(234, 0, 95);
 				app.rectMode(app.CENTER);
-				app.rect(pos.x, pos.y, 30+b, 30+b);
+				app.rect(pos.x, pos.y, tamC+b, tamC+b);
 
 				app.pushMatrix();
 				app.translate(pos.x, pos.y);
 				app.rotate(progress - 60);
 				app.noFill();
 				app.stroke(18 + a, 183 - a, 255);
-				app.rect(0, 0, 60, 60);
+				app.rect(0, 0, tamC*2, tamC*2);
 				app.popMatrix();
 
 				app.rectMode(app.CORNER);
@@ -90,7 +92,7 @@ public class Notas extends Thread {
 				break;
 
 			case 1://ciculito con cuadrado adentro
-				int tam = 50;
+				int tam = 40;
 
 				app.stroke(234, 160, 255);
 				app.noFill();
@@ -108,35 +110,41 @@ public class Notas extends Thread {
 				break;
 
 			case 2://cuadro con linea
+				int square = 40;
+
 				app.noFill();
 				app.stroke(250, 1, 255);
 
 				app.pushMatrix();
 				app.translate(pos.x, pos.y);
 
-				app.line(10+b, 10+b, 40-b, 40-b);
+				app.line(   15 + b ,  15 + b,  25 - b,  25 - b);
 
-				app.rect(0, 0, 50, 50);
+				app.rect(0, 0, square, square);
 				app.popMatrix();
 				break;
 
-			case 3: // circulo niu
+			case 3: // circulo arc
 				app.noFill();
+
+				int circulo = 30;
+
 
 				app.pushMatrix();
 				app.translate(pos.x, pos.y);
 				app.stroke(25, 255, 0);
-				app.arc(50, 55+(b-9), 60, 60, app.HALF_PI, app.PI+a);
+				app.arc(50, 55+(b-9), circulo, circulo, app.HALF_PI, app.PI+a);
 				app.stroke(75, 255, 56);
-				app.arc(50, 55, 70, 70, app.PI, app.PI+app.QUARTER_PI);
+				app.arc(50, 55, circulo + 10, circulo + 10, app.PI, app.PI+app.QUARTER_PI);
 				app.stroke(160, 255, 150);
-				app.arc(50, 55, 80, 80, app.PI+app.QUARTER_PI, app.TWO_PI);
+				app.arc(50, 55, circulo + 20, circulo + 20, app.PI+app.QUARTER_PI, app.TWO_PI);
 				app.popMatrix();
 
 				break;
 
-			case 4:
+			case 4: //Circulo  con circulito adentro
 
+				int tamCir = 40;
 
 				app.pushMatrix();
 				app.translate(pos.x, pos.y);
@@ -144,14 +152,14 @@ public class Notas extends Thread {
 				app.stroke(255, 176, 91);
 				app.ellipseMode(app.CORNER);
 				app.rotate(progress-60);
-				app.ellipse(15, 15, 15, 15);
+				app.ellipse(5, 5, 10, 10);
 				app.ellipseMode(app.CENTER);
 				app.popMatrix();
 
 				app.noFill();
 				app.stroke(255, 67, 0);
 
-				app.ellipse(pos.x, pos.y, 80, 80);
+				app.ellipse(pos.x, pos.y, tamCir, tamCir);
 
 				break;
 

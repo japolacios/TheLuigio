@@ -22,6 +22,9 @@ public class User {
 	}
 
 	public void pintar() {
+
+		app.imageMode(app.CENTER);
+
 		pos = new PVector(x, y);
 		if(id==0){
 
@@ -32,14 +35,16 @@ public class User {
 		}
 
 		if(id==0) {
-		app.image(img1, pos.x,pos.y ,150, 150);
+		app.image(img1, pos.x,pos.y ,50, 50);
 
 		}
 
 		if(id==1) {
-			app.image(img2, pos.x,pos.y, 150,75);
+			app.image(img2, pos.x,pos.y, 50,50);
 
 		}
+
+		app.imageMode(app.CORNER);
 	}
 
 	public PVector getPos() {

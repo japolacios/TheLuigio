@@ -21,7 +21,7 @@ public class Start {
     public void pintar(){
         app.translate(0,0,30);
         app.noStroke();
-        app.image(img, 560,240);
+
         //app.fill(0);
 
       //  app.rect(0,0,app.width,app.height);
@@ -39,11 +39,16 @@ public class Start {
             for (float x = 0; x < app.width; x = x + 1) {
 
                 app.point(x, y + app.map(app.noise(x/150, y/150, z), 0, 1, -100, 100));
+
             }
+
         }
+
+        app.image(img, 560,280+ app.map(app.noise(560/150, 240/150, z), 0, 1, -50, 50));
 
         /* when y is 500 the program will move forward. In this case increment z */
         z = (float) (z + 0.002);
+
 
     }
 }
