@@ -127,17 +127,18 @@ public class Notas extends Thread {
 			case 3: // circulo arc
 				app.noFill();
 
-				int circulo = 30;
 
+
+				int circulo = 30;
 
 				app.pushMatrix();
 				app.translate(pos.x, pos.y);
 				app.stroke(25, 255, 0);
-				app.arc(50, 55+(b-9), circulo, circulo, app.HALF_PI, app.PI+a);
+				app.arc(0, 55+(b-9), circulo, circulo, app.HALF_PI, app.PI+a);
 				app.stroke(75, 255, 56);
-				app.arc(50, 55, circulo + 10, circulo + 10, app.PI, app.PI+app.QUARTER_PI);
+				app.arc(0, 55, circulo + 10, circulo + 10, app.PI, app.PI+app.QUARTER_PI);
 				app.stroke(160, 255, 150);
-				app.arc(50, 55, circulo + 20, circulo + 20, app.PI+app.QUARTER_PI, app.TWO_PI);
+				app.arc(0, 55, circulo + 20, circulo + 20, app.PI+app.QUARTER_PI, app.TWO_PI);
 				app.popMatrix();
 
 				break;

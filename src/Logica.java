@@ -105,18 +105,20 @@ switch (pantallas){
 
 	case 0:
 
+		app.rect(162,270, 115, 239);
 		inicio.pintar();
+
 
 
 		break;
 
 	case 1:
 
-
 		app.fill(255);
 		app.rect(162,270, 115, 239);
 		app.rect(4,10, 10, 708);
 		app.rect(167,550, 369, 10);
+		app.rect(616,481,143, 29);
 
 		app.pushMatrix();
 		ui.paint();
@@ -135,6 +137,11 @@ switch (pantallas){
 		desaparecerNotas();
 		timeLine.pintar();
 
+		app.imageMode(PConstants.CENTER);
+		app.image(img1,585, 300 ,50,50);
+		app.image(img2,685, 300, 50,50);
+		app.image(img3,785, 300,50,50 );
+
 		break;
 
 }
@@ -145,10 +152,7 @@ switch (pantallas){
 		pintarUsuarios();
 
 
-		app.imageMode(PConstants.CENTER);
-		app.image(img1,585, 300 ,50,50);
-		app.image(img2,685, 300, 50,50);
-		app.image(img3,785, 300,50,50 );
+
 
 
 	}
@@ -175,7 +179,7 @@ switch (pantallas){
 
 		for (int i = 0; i <notasArray.size() ; i++) {
 			Notas n= notasArray.get(i);
-			if (n.getPos().y>app.height-280 | n.getPos().x>500) {
+			if (n.getPos().y>app.height-280 | n.getPos().x>500| n.getPos().x<0) {
 				n.setIniciar(false);
 				notasArray.remove(n);
 			}
