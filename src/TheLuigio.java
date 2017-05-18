@@ -60,8 +60,12 @@ public class TheLuigio extends PApplet {
 	}
 
 	public void mousePressed(){
-
 		System.out.println(mouseX+":"+mouseY);
+	}
+
+	@Override
+	public void keyPressed() {
+		logica.reset();
 	}
 
 }

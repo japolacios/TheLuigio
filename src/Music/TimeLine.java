@@ -77,6 +77,8 @@ public class TimeLine implements Observer {
 
 
 
+
+
 		//uno---------------------------------------------
 
 		unonueve=new Sampler("assets/onenueve.wav", 4, minim);
@@ -248,6 +250,8 @@ public class TimeLine implements Observer {
 
 		if (arg instanceof String) {
 
+
+
 			String m= (String)arg;
 			String[] palabras=m.split(":");
 			int ale= Integer.parseInt(palabras[1]);
@@ -357,6 +361,10 @@ public class TimeLine implements Observer {
 		// notas.add(new NotaR((eqs*(interval/4))-(interval/4)/2, 25));
 		//println(eqs*(interval/4));
 
+	}
+
+	public void limpiarTimeLine(){
+		notas.clear();
 	}
 
 	public AudioOutput getOut() {

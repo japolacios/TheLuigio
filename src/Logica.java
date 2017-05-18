@@ -22,6 +22,7 @@ public class Logica {
 
 	// Atributos
 	private boolean poblar;
+	private boolean iniciar=false;
 	private int count;
 	TuioProcessing tuioClient;
 	// Relaciones
@@ -40,6 +41,7 @@ public class Logica {
 	//Sound Atributes
 	public Minim minim;
 	public BeatDetect beat;
+	private PImage img1, img2, img3;
 
 	// Constructor
 	public Logica(PApplet _app) {
@@ -54,16 +56,21 @@ public class Logica {
 		img= app.loadImage("data/planoTertulia.png");
 		inicio= new Start(app);
 
+		img1= app.loadImage("assets/instru.png" );
+		img2= app.loadImage("assets/instru2.png" );
+		img3= app.loadImage("assets/instru3.png" );
+
 	}
 
 	// Metodo Para Inicializar variables
 	private void init() {
+		poblar = false;
 		react = new ReactVision(app);
 		notasArray = new ArrayList<Notas>();
 		users = new ArrayList<User>();
 
 		count = 0;
-		poblar = false;
+
 
 		//Start Ui Thread
 		ui = new MainG(app);
@@ -81,14 +88,28 @@ public class Logica {
 		app.imageMode(PConstants.CORNER);
 		app.image(img, 0,0);
 
-switch (0){
+		for (int i = 0; i <users.size() ; i++) {
+			User u = users.get(i);
+			if (inicio.avanzar(u.getPos().x, u.getPos().y)) {
+				if (inicio.avanzar(u.getPos().x, u.getPos().y) && pantallas == 0) {
+
+					notasArray.clear();
+					pantallas = 1;
+
+				}
+			}
+		}
+
+switch (pantallas){
 
 
 	case 0:
 
 		inicio.pintar();
 
+
 		break;
+
 	case 1:
 
 
@@ -103,17 +124,31 @@ switch (0){
 		//	circulo.paint(timeLine.getOut().mix);
 		app.popMatrix();
 
-		react.pintar();
+		/*react.pintar();
 		checkBlobs();
-		atrapar();
+		atrapar();*/
+
 		pintarNotas();
-		pintarUsuarios();
+
+
+		//pintarUsuarios();
 		desaparecerNotas();
 		timeLine.pintar();
 
 		break;
 
 }
+
+		react.pintar();
+		checkBlobs();
+		atrapar();
+		pintarUsuarios();
+
+
+		app.imageMode(PConstants.CENTER);
+		app.image(img1,585, 300 ,50,50);
+		app.image(img2,685, 300, 50,50);
+		app.image(img3,785, 300,50,50 );
 
 
 	}
@@ -213,5 +248,18 @@ switch (0){
 			}
 		}
 	}
+
+	public void reset() {
+
+	if (app.keyCode==app.UP){
+		System.out.println("reseteado papu");
+		users.clear();
+		notasArray.clear();
+		timeLine.limpiarTimeLine();
+		pantallas=0;
+	}
+
+	}
+
 
 }

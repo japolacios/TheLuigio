@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PImage;
 import processing.core.PVector;
 
@@ -8,7 +9,9 @@ public class User {
 	private PApplet app;
 	private float x,y;
 	private int id;
-	private PImage img1, img2;
+	private PImage img1, img2, img3;
+
+
 
 	public User(PApplet _app, float _x, float _y, int _id) {
 		app = _app;
@@ -16,8 +19,11 @@ public class User {
 		y =_y;
 		id = _id;
 
+
 		img1= app.loadImage("assets/instru.png" );
 		img2= app.loadImage("assets/instru2.png" );
+		img3= app.loadImage("assets/instru3.png" );
+
 
 	}
 
@@ -35,12 +41,19 @@ public class User {
 		}
 
 		if(id==0) {
+			//app.imageMode(PConstants.CENTER);
 		app.image(img1, pos.x,pos.y ,50, 50);
 
 		}
 
 		if(id==1) {
+			//app.imageMode(PConstants.CENTER);
 			app.image(img2, pos.x,pos.y, 50,50);
+
+		}
+
+		if (id==2){
+			app.image(img3, pos.x,pos.y, 50,50);
 
 		}
 

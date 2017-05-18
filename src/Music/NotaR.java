@@ -3,6 +3,7 @@ package Music;
 import java.util.Observable;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 import processing.core.PVector;
 
 public class NotaR extends Observable {
@@ -17,6 +18,8 @@ public class NotaR extends Observable {
 	int idUser;
 
 	private int forma;
+
+
 
 	NotaR(float posX, float posY, PApplet app, float interval, int forma, int idUser){
 		this.app=app;
@@ -37,6 +40,8 @@ public class NotaR extends Observable {
 		if (idUser==2){
 			destX=785;
 		}
+
+
 
 
 		destY=190+(eqs*(interval/4))-(interval/4)/2;
@@ -153,7 +158,10 @@ public class NotaR extends Observable {
 				break;
 
 		}
+
 		animar();
+
+
 	}
 
 	public void animar(){
@@ -172,21 +180,22 @@ public class NotaR extends Observable {
 	public boolean sonar(float y){
 
 		if(PApplet.dist(pos.x, pos.y, pos.x, y)<6){
+
 			if(pos.x>540) {
-				if (idUser==1) {
+				if (idUser==0) {
 					setChanged();
 					notifyObservers("suene uno"+":"+forma);
 					clearChanged();
 				}
 
-				if (idUser==2) {
+				if (idUser==1) {
 					setChanged();
 					notifyObservers("suene dos"+":"+forma);
 					clearChanged();
 
 				}
 
-				if (idUser==3) {
+				if (idUser==2) {
 					setChanged();
 					notifyObservers("suene tres"+":"+forma);
 					clearChanged();

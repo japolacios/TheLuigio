@@ -11,6 +11,8 @@ public class Start {
     private PApplet app;
     private float z = 0; // create variable for noise z
     private PImage img;
+    private float posX=400, posY=400;
+    private int diam=50;
 
     public Start(PApplet app) {
 
@@ -46,9 +48,18 @@ public class Start {
 
         app.image(img, 560,280+ app.map(app.noise(560/150, 240/150, z), 0, 1, -50, 50));
 
+        app.fill(255);
+        app.ellipse(posX, posY, diam,diam);
         /* when y is 500 the program will move forward. In this case increment z */
         z = (float) (z + 0.002);
 
+    }
 
+    public boolean avanzar(float x, float y){
+        if (app.dist(x, y, posX, posY)<diam/2){
+            return true;
+        }else {
+            return false;
+        }
     }
 }

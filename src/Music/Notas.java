@@ -204,7 +204,7 @@ public class Notas extends Thread {
 
 	public void setIniciar(boolean iniciar) {
 		this.iniciar = iniciar;
-		System.out.println("matado");
+		//System.out.println("matado");
 	}
 
 	public PVector getPos() {
