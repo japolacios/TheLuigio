@@ -38,10 +38,12 @@ public class Logica {
 	private Start inicio;
 	private int pantallas=0;
 
+
+
 	//Sound Atributes
 	public Minim minim;
 	public BeatDetect beat;
-	private PImage img1, img2, img3;
+	private PImage img1, img2, img3, gtech;
 
 	// Constructor
 	public Logica(PApplet _app) {
@@ -59,6 +61,7 @@ public class Logica {
 		img1= app.loadImage("assets/instru.png" );
 		img2= app.loadImage("assets/instru2.png" );
 		img3= app.loadImage("assets/instru3.png" );
+		gtech= app.loadImage("assets/gtech.jpg" );
 
 	}
 
@@ -102,13 +105,12 @@ public class Logica {
 
 switch (pantallas){
 
-
 	case 0:
 
 		app.rect(162,270, 115, 239);
+		app.text("Patrocinado por:",30,540);
+		app.image(gtech, 30, 569, 120,120);
 		inicio.pintar();
-
-
 
 		break;
 
