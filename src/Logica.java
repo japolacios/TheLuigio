@@ -31,7 +31,7 @@ public class Logica {
 	private ArrayList<User> users;
 	private PImage img;
 	private MainG ui;
-
+	//prueba
 	//private Circle circulo;
 	private Bg bg;
 	private TimeLine timeLine;
